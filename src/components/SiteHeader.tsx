@@ -1,36 +1,21 @@
-import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { ArrowUpRight, Instagram, Menu, MessageCircle, X } from "lucide-react";
+import { clinic } from "../lib/clinic";
 
-const links = [
-  { to: "/", label: "Início" },
-  { to: "/servicos", label: "Tratamentos" },
-  { to: "/contato", label: "Contato" },
-] as const;
-
-export function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/" className="font-display text-2xl font-semibold text-primary">
-          Sorriso<span className="text-accent">.</span>
-        </Link>
-        <nav className="flex gap-6 text-sm font-medium">
-          {links.map((l) => (
-            <Link key={l.to} to={l.to} className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }} activeOptions={{ exact: true }}>
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
-  );
+export function Brand() {
+  return <a className="brand" href="/" aria-label="Dra. Jennifer Figueiredo — início"><span className="monogram">jf<span>✧</span></span><span>JENNIFER FIGUEIREDO<small>ODONTOLOGIA · CUIDADO · ESTÉTICA</small></span></a>;
 }
-
+export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  return <><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><header className="site-header"><div className="container header-inner">
+    <Brand />
+    <nav aria-label="Navegação principal" id="main-navigation" className={open ? "navigation is-open" : "navigation"}>
+      {[["/#sobre","A doutora"],["/#cuidados","Seu sorriso"],["/#duvidas","Dúvidas"]].map(([href,label])=><a href={href} key={href} onClick={()=>setOpen(false)}>{label}</a>)}
+      <a className="button button-small" href={clinic.whatsapp} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)}>Agendar avaliação <ArrowUpRight size={16}/></a>
+    </nav>
+    <button className="menu-toggle" aria-label={open?"Fechar menu":"Abrir menu"} aria-expanded={open} aria-controls="main-navigation" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button>
+  </div></header></>;
+}
 export function SiteFooter() {
-  return (
-    <footer className="mt-24 border-t bg-secondary/50">
-      <div className="mx-auto max-w-6xl px-6 py-10 text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Clínica Sorriso · Rua das Flores, 123 · (11) 99999-0000
-      </div>
-    </footer>
-  );
+ return <><footer className="site-footer"><div className="container footer-top"><Brand/><p>O cuidado que você sente.<br/>A confiança que você leva.</p><a href={clinic.instagram} target="_blank" rel="noreferrer" className="social-link"><Instagram size={18}/> @drajenniferf <ArrowUpRight size={16}/></a></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} Dra. Jennifer Figueiredo</span><span>Cirurgiã-dentista · {clinic.registration}</span><a href="/contato">Fale com o consultório</a></div></footer><a className="floating-whatsapp" href={clinic.whatsapp} target="_blank" rel="noreferrer" aria-label="Conversar com o consultório no WhatsApp"><MessageCircle size={25}/><span>Vamos conversar?</span></a></>;
 }
