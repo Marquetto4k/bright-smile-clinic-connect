@@ -13,3 +13,6 @@ Nome e CRO-PR 35.963 extraídos das imagens fornecidas. Endereço, horários, de
 ## Validação
 TypeScript, teste de roteamento existente e build de produção aprovados. Rotas /, /contato e /servicos responderam HTTP 200.
 Inspeção visual automatizada bloqueada pelo controle do navegador, que não conseguiu confirmar sua URL ativa. Conferir visualmente no Lovable antes de publicar.
+
+## Refinamento visual e motion
+Abertura escura com luz ambiente, navegação flutuante, cartões elevados, transições de interação e símbolo vetorial do WhatsApp nos contatos. Entradas com Web Animations API e IntersectionObserver, sem novas dependências. Conteúdo visível sem JavaScript; preferência de movimento reduzido e botão de pausa. TypeScript, build e os 3 testes aprovados. Inspeção visual no navegador não realizada nesta revisão.

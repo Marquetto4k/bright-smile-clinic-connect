@@ -1,0 +1,725 @@
+/* Modern visual layer. Motion is opt-in after hydration and user preference checks. */
+html {
+  scroll-padding-top: 130px;
+}
+.site-header {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1320px, calc(100% - 48px));
+  border: 1px solid #ffffffb8;
+  border-radius: 20px;
+  background: #f8faf1ed;
+  box-shadow: 0 8px 40px #0c2c2420;
+  backdrop-filter: blur(24px);
+}
+.header-inner {
+  width: calc(100% - 48px);
+  height: 82px;
+}
+.navigation > a:not(.button) {
+  position: relative;
+  padding-block: 12px;
+}
+.navigation > a:not(.button)::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #426b51;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.navigation > a:hover::after {
+  transform: scaleX(1);
+}
+.button {
+  border-radius: 100px;
+  padding: 19px 27px;
+  box-shadow: 0 6px 20px #183c3610;
+}
+.button-small {
+  padding: 13px 20px;
+}
+.button svg,
+.text-link svg,
+.social-link svg:last-child {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+.button:hover svg:last-child,
+.text-link:hover svg:last-child,
+.social-link:hover svg:last-child {
+  transform: translate(3px, -3px);
+}
+.button:active {
+  transform: scale(0.98);
+}
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-top: 120px;
+  color: #f6f8ec;
+  background: #102f29;
+  background-image:
+    radial-gradient(ellipse at 80% 30%, #476a4e80, transparent 55%),
+    linear-gradient(115deg, #102b28, #1c4437);
+}
+.hero-aura {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-aura::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(#d4e8b605 1px, transparent 1px),
+    linear-gradient(90deg, #d4e8b605 1px, transparent 1px);
+  background-size: 90px 90px;
+  mask-image: linear-gradient(transparent, #000, transparent);
+}
+.hero-aura span {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #b7dd8655, transparent 65%);
+  top: -150px;
+  right: -70px;
+  opacity: 0.65;
+}
+.hero-aura span + span {
+  width: 650px;
+  height: 650px;
+  top: auto;
+  bottom: -430px;
+  right: auto;
+  left: -150px;
+  background: radial-gradient(circle, #7cbaa84d, transparent 68%);
+}
+.hero-grid {
+  position: relative;
+  padding-top: 52px;
+  padding-bottom: 66px;
+  gap: 75px;
+}
+.hero .eyebrow {
+  color: #cedbc2;
+  letter-spacing: 2px;
+}
+.hero-copy > .eyebrow {
+  width: fit-content;
+  border: 1px solid #b3cf9c30;
+  padding: 10px 15px;
+  border-radius: 40px;
+  background: #ffffff05;
+}
+.hero h1 {
+  font-size: clamp(58px, 6.1vw, 86px);
+  letter-spacing: -3.6px;
+}
+.hero h1 em {
+  color: #d2e7a9;
+}
+.hero-description {
+  color: #becfc4;
+  font-size: 15px;
+}
+.hero .button {
+  background: #d3e7af;
+  border-color: #d3e7af;
+  color: #18392d;
+  box-shadow: 0 8px 32px #cde7a01c;
+}
+.hero .button:hover {
+  background: #e5f3ce;
+  box-shadow: 0 8px 35px #cde7a035;
+}
+.hero .text-link {
+  color: #e0e8d8;
+  border-color: #c7d6bd45;
+}
+.hero-signature small {
+  color: #aabfae;
+}
+.signature-line {
+  background: #b8ce9a;
+}
+.hero-visual {
+  padding-right: 14px;
+}
+.portrait-frame {
+  height: 575px;
+  border: 1px solid #d7e6c642;
+  border-radius: 160px 160px 28px 28px;
+  box-shadow: 0 30px 90px #041c2660;
+}
+.portrait-frame > img {
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.photo-orbit {
+  inset: -15px -2px 14px -16px;
+  border-color: #c7db9e65;
+  border-radius: 180px 180px 36px 36px;
+}
+.photo-orbit::after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  top: 24%;
+  right: 1px;
+  background: #d1e7ad;
+  box-shadow: 0 0 25px #cceba480;
+}
+.floating-note {
+  color: #203c35;
+  background: #f6faeeec;
+  border-color: #ffffffa8;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px #061f293d;
+  bottom: 66px;
+  left: -44px;
+}
+.floating-note > span {
+  background: #dfe9d1;
+}
+.vertical-note {
+  color: #b6c9af;
+  right: -17px;
+}
+.hero-bottom {
+  border-color: #d3e1c424;
+  color: #b6c7af;
+}
+.hero-bottom a {
+  color: #d3dfc6;
+}
+.values-strip {
+  background: #e5edda;
+  border: 0;
+}
+.values-strip > .container {
+  padding-block: 29px;
+}
+.values-strip span {
+  font-size: 12px;
+}
+.values-strip svg {
+  width: 20px;
+  height: 20px;
+}
+.care-section {
+  background: radial-gradient(ellipse at 0 80%, #e5ecd959, transparent 65%), #f8f8f2;
+}
+.care-grid {
+  border: 0;
+  border-radius: 0;
+  gap: 20px;
+  overflow: visible;
+}
+.care-card {
+  position: relative;
+  border: 1px solid #dce5d5;
+  border-radius: 24px;
+  background: linear-gradient(155deg, #fff, #f1f5e9);
+  overflow: hidden;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s,
+    border-color 0.45s;
+}
+.care-card + .care-card {
+  border-left: 1px solid #dce5d5;
+}
+.care-card::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: -110px;
+  top: -100px;
+  border-radius: 50%;
+  background: radial-gradient(#c6dca888, transparent 70%);
+  pointer-events: none;
+  transition: transform 0.6s;
+}
+.care-top {
+  margin-bottom: 46px;
+}
+.care-top > svg {
+  width: 59px;
+  height: 59px;
+  padding: 15px;
+  border: 1px solid #cfdcc4;
+  border-radius: 18px;
+  background: #e8efdd;
+}
+.care-top > span {
+  font-size: 16px;
+}
+.care-card h3 {
+  font-size: 27px;
+}
+.care-card > a {
+  padding-top: 23px;
+}
+.about-section {
+  background: #eaf0e2;
+  border-radius: 48px 48px 0 0;
+  position: relative;
+}
+.about-image {
+  border-radius: 28px 110px 28px 28px;
+  overflow: hidden;
+  box-shadow: 0 28px 55px #203b321a;
+}
+.about-image img {
+  border-radius: inherit;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.image-label {
+  border-radius: 100px;
+  backdrop-filter: blur(16px);
+  background: #f7fbe9db;
+  padding: 15px 22px;
+}
+.about-name {
+  border-left: 2px solid #91ac74;
+  padding-left: 17px;
+}
+.about-checks {
+  gap: 14px;
+}
+.about-checks svg {
+  width: 23px;
+  height: 23px;
+  padding: 4px;
+  background: #d9e6c9;
+  border-radius: 50%;
+}
+.journey-grid {
+  gap: 24px;
+  counter-reset: journey;
+}
+.journey-grid article {
+  position: relative;
+  padding: 30px 28px;
+  border: 1px solid #dce5d5;
+  border-radius: 22px;
+  background: #ffffff70;
+}
+.journey-grid article > span {
+  display: inline-flex;
+  width: 59px;
+  height: 59px;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  border-radius: 50%;
+  background: #e7eedc;
+  color: #5b7e47;
+}
+.journey-grid h3 {
+  margin-top: 25px;
+}
+.instagram-panel {
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 5% 15%, #d6e6be80, transparent 50%),
+    linear-gradient(115deg, #e9f0e0, #f0f4e9);
+  box-shadow: 0 20px 60px #31502e08;
+}
+.instagram-mark {
+  background: #f9fcf0a6;
+  border-color: #c5d5b5;
+  box-shadow: 0 10px 30px #38512c0a;
+}
+.faq-list {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.faq-list details,
+.faq-list details:first-child {
+  border: 1px solid #dce5d5;
+  border-radius: 17px;
+  background: #ffffff7a;
+  padding-inline: 20px;
+  transition:
+    background 0.25s,
+    box-shadow 0.25s;
+}
+.faq-list details[open] {
+  background: #edf3e4;
+  box-shadow: 0 10px 30px #29482b08;
+}
+.faq-list details p {
+  padding-left: 29px;
+  padding-right: 10px;
+}
+.faq-list summary {
+  padding-block: 23px;
+}
+.contact-section {
+  background:
+    radial-gradient(ellipse at 85% 65%, #74934a45, transparent 55%),
+    linear-gradient(120deg, #102c27, #244d3c);
+  border-radius: 48px 48px 0 0;
+}
+.contact-inner {
+  padding-block: 100px;
+}
+.contact-orbit > div {
+  border-color: #bfd89645;
+}
+.contact-orbit > div::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  width: 8px;
+  height: 8px;
+  background: #d2e6a6;
+  border-radius: 50%;
+  box-shadow: 0 0 25px #d2e6a680;
+}
+.contact-orbit > div:nth-child(2)::after {
+  top: auto;
+  bottom: 12%;
+  right: auto;
+  left: 12%;
+  width: 5px;
+  height: 5px;
+}
+.floating-whatsapp {
+  background: #1a9750;
+  border: 1px solid #77d398;
+  box-shadow: 0 8px 26px #0e472a33;
+  padding: 16px 21px;
+  gap: 12px;
+  transition:
+    background 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.floating-whatsapp span {
+  max-width: 160px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.floating-whatsapp:hover {
+  background: #168344;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px #0e472a4d;
+}
+.floating-whatsapp > svg {
+  flex-shrink: 0;
+}
+.motion-toggle {
+  position: fixed;
+  bottom: 25px;
+  left: 22px;
+  z-index: 40;
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 40px;
+  font-size: 10px;
+  background: #f9fcf1e8;
+  color: #355140;
+  border: 1px solid #cbd7bf;
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+.motion-toggle:disabled {
+  opacity: 0.8;
+  cursor: default;
+}
+main:not(:has(.hero)) {
+  padding-top: 125px;
+}
+[data-motion="on"] .hero-aura span {
+  animation: aura-drift 16s ease-in-out infinite alternate;
+}
+[data-motion="on"] .hero-aura span + span {
+  animation-delay: -8s;
+}
+[data-motion="on"] .floating-note {
+  animation: note-float 6s ease-in-out infinite;
+}
+[data-motion="on"] .photo-orbit {
+  animation: frame-breathe 10s ease-in-out infinite;
+}
+[data-motion="on"] .contact-orbit > div {
+  animation: orbit-turn 35s linear infinite;
+}
+[data-motion="on"] .contact-orbit > div:nth-child(2) {
+  animation-direction: reverse;
+  animation-duration: 45s;
+}
+[data-motion="on"] .hero-bottom svg {
+  animation: scroll-cue 2.6s ease-in-out infinite;
+}
+[data-motion="on"] .faq-list details[open] p {
+  animation: faq-reveal 0.35s ease-out;
+}
+@keyframes aura-drift {
+  to {
+    transform: translate(-80px, 65px) scale(1.15);
+    opacity: 1;
+  }
+}
+@keyframes note-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes frame-breathe {
+  0%,
+  100% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-1deg) translateY(-4px);
+  }
+}
+@keyframes orbit-turn {
+  from {
+    transform: rotate(-35deg) scaleX(0.8);
+  }
+  to {
+    transform: rotate(325deg) scaleX(0.8);
+  }
+}
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+@keyframes faq-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .care-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 45px #244c3e14;
+    border-color: #9bb481;
+  }
+  .care-card:hover::before {
+    transform: scale(1.5);
+  }
+  .hero-visual:hover .portrait-frame > img {
+    transform: scale(1.025);
+  }
+  .about-image:hover img {
+    transform: scale(1.04);
+  }
+}
+@media (max-width: 1050px) {
+  .hero-grid {
+    gap: 40px;
+  }
+  .hero h1 {
+    font-size: 64px;
+  }
+  .portrait-frame {
+    height: 530px;
+  }
+  .care-grid {
+    gap: 14px;
+  }
+  .care-card {
+    padding: 28px 23px;
+  }
+  .care-card h3 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 105px;
+  }
+  .site-header {
+    top: 10px;
+    width: calc(100% - 24px);
+    border-radius: 17px;
+  }
+  .header-inner {
+    width: calc(100% - 28px);
+    height: 68px;
+  }
+  .navigation {
+    top: 76px;
+    border: 1px solid #dae4cf;
+    border-radius: 17px;
+    box-shadow: 0 20px 40px #0b2a2630;
+  }
+  .navigation > a:not(.button)::after {
+    display: none;
+  }
+  .hero {
+    padding-top: 95px;
+  }
+  .hero-grid {
+    padding-top: 28px;
+    gap: 42px;
+    padding-bottom: 36px;
+  }
+  .hero-copy > .eyebrow {
+    padding: 9px 12px;
+    font-size: 7px;
+    letter-spacing: 1.15px;
+  }
+  .hero h1 {
+    font-size: clamp(53px, 12vw, 76px);
+    letter-spacing: -2.6px;
+  }
+  .hero-description {
+    font-size: 14px;
+  }
+  .hero-visual {
+    padding-inline: 12px;
+  }
+  .portrait-frame {
+    height: 490px;
+    border-radius: 130px 130px 22px 22px;
+  }
+  .photo-orbit {
+    inset: -12px 1px 10px 0;
+    border-radius: 145px 145px 28px 28px;
+  }
+  .floating-note {
+    left: 0;
+    bottom: 62px;
+    border-radius: 15px;
+  }
+  .vertical-note {
+    right: -8px;
+  }
+  .values-strip span {
+    font-size: 10px;
+  }
+  .values-strip > .container {
+    padding-block: 25px;
+  }
+  .care-grid {
+    gap: 18px;
+  }
+  .care-card {
+    padding: 30px;
+  }
+  .care-card + .care-card {
+    border: 1px solid #dce5d5;
+  }
+  .about-section,
+  .contact-section {
+    border-radius: 28px 28px 0 0;
+  }
+  .about-image {
+    border-radius: 22px 80px 22px 22px;
+  }
+  .journey-grid {
+    gap: 18px;
+  }
+  .journey-grid article {
+    grid-template-columns: 48px 1fr;
+    gap: 0 18px;
+    padding: 24px 20px;
+  }
+  .journey-grid article > span {
+    width: 46px;
+    height: 46px;
+    font-size: 21px;
+  }
+  .journey-grid h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+  }
+  .instagram-panel {
+    padding: 28px;
+    border-radius: 23px;
+  }
+  .faq-list details {
+    padding-inline: 15px;
+  }
+  .faq-list summary {
+    font-size: 11px;
+  }
+  .contact-inner {
+    padding-block: 70px;
+  }
+  .floating-whatsapp {
+    padding: 15px;
+    bottom: 18px;
+    right: 18px;
+  }
+  .floating-whatsapp span {
+    display: none;
+  }
+  .motion-toggle {
+    bottom: 23px;
+    left: 16px;
+    padding: 9px;
+    min-height: 36px;
+  }
+  .motion-toggle span {
+    display: none;
+  }
+  main:not(:has(.hero)) {
+    padding-top: 100px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media print {
+  .site-header {
+    position: static;
+    transform: none;
+    width: 100%;
+  }
+  .hero,
+  main:not(:has(.hero)) {
+    padding-top: 0;
+  }
+  .floating-whatsapp,
+  .motion-toggle,
+  .hero-aura {
+    display: none;
+  }
+}
